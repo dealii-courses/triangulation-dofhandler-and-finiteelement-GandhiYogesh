@@ -36,6 +36,7 @@ first_grid()
   Triangulation<2> triangulation;
 
   GridGenerator::hyper_cube(triangulation);
+
   triangulation.refine_global(4);
 
   std::ofstream out("grid-1.svg");
@@ -84,6 +85,21 @@ second_grid()
   std::cout << "Grid written to grid-2.svg" << std::endl;
 }
 
+void
+third_grid()
+{
+  Triangulation<2> triangulation;
+
+  GridGenerator::hyper_L(triangulation);
+
+  triangulation.refine_global(1);
+
+  std::ofstream out("grid-3.svg");
+  GridOut       grid_out;
+  grid_out.write_svg(triangulation, out);
+  std::cout << "Grid written to grid-3.svg" << std::endl;
+}
+
 
 
 int
@@ -91,4 +107,5 @@ main()
 {
   first_grid();
   second_grid();
+  third_grid();
 }
